@@ -14,7 +14,9 @@ module.exports = function() {
 	app.use(bodyParser.json());
 	app.use(validator());
 
-	load({cwd:'app'}).include('infra')
+	load({cwd:'app'})
+		.include('infra')
+		.then('controllers')
 		.then('routes')
 		.into(app);
 
