@@ -3,6 +3,7 @@ module.exports = function() {
 	var bodyParser = require('body-parser');
 	var load = require('consign');
 	var app = express();
+	var validator = require('express-validator');
 
 
 	app.set('view engine', 'ejs');
@@ -11,6 +12,7 @@ module.exports = function() {
 	app.use(express.static('./public'));
 	app.use(bodyParser.urlencoded({extended:true}));
 	app.use(bodyParser.json());
+	app.use(validator());
 
 	load({cwd:'app'}).include('infra')
 		.then('routes')
