@@ -4,7 +4,14 @@ module.exports = function(app) {
 		var connection = app.infra.connectionFactory();
 		var produtoDao = new app.infra.ProdutoDao(connection);
 		produtoDao.lista( function(err, produtos) {
-			res.render('produtos/lista', {lista: produtos});
+			res.format({
+				html: function() {
+					res.render('produtos/lista', {lista: produtos});
+				},
+				json: function() {
+					res.json(produtos);
+				},
+			});
 		});
 
 		connection.end();
@@ -12,11 +19,14 @@ module.exports = function(app) {
 
 	app.post('/produtos', function(req, res) {
 		var produto = req.body;
+
 		var connection = app.infra.connectionFactory();
 		var produtoDao = new app.infra.ProdutoDao(connection);
 		produtoDao.salva(produto, function() {
 			res.redirect('/produtos');
 		});
+
+		connection.end();
 	});
 
 	app.get('/produtos/form', function(req, res) {
