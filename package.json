@@ -2,7 +2,7 @@
   "name": "casadocodigo",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "dependencies": {
     "body-parser": "^1.15.0",
     "consign": "^0.1.2",
@@ -12,9 +12,12 @@
     "express-validator": "^2.19.2",
     "mysql": "^2.10.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^1.9.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "nodemon": "nodemon"
   },
   "repository": {
     "type": "git",
