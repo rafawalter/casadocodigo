@@ -2,8 +2,6 @@
 <head>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/forms.css">
 </head>
 <body>
     <div>
@@ -11,6 +9,15 @@
             <h2 class="basic-title">Add</h2>
             
             <!-- FORM DE PRODUTOS -->
+
+            <%
+                var metodo;
+                if (produto.id) {
+                    metodo = 'put';
+                } else {
+                    metodo = 'post';
+                }
+            %>
 
             <% if (locals.validationErrors) { %>
                 <ul class='list-unstyled'>
@@ -23,6 +30,9 @@
             <% } %>
 
             <form action="/produtos" method="post" class="well" role="form">
+                <input type='hidden' name='id' value='<%=produto.id%>'>
+                <input type='hidden' name='_method' value='<%= metodo %>'>
+
                 <div class="form-group">
                     <label for="titulo">Titulo</label>
                     <div class="input-group">
