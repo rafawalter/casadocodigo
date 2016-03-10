@@ -3,6 +3,7 @@ module.exports = function(app) {
 	controller.lista = function(req,res) {
 		var connection = app.infra.connectionFactory();
 		var produtoDao = new app.infra.ProdutoDao(connection);
+
 		produtoDao.lista( function(err, produtos) {
 			res.format({
 				html: function() {
