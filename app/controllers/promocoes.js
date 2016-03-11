@@ -42,6 +42,7 @@ module.exports = function(app) {
 		var connection = app.infra.connectionFactory();
 		var promocaoDao = new app.infra.PromocaoDao(connection);
 		promocaoDao.salva(promocao, function() {
+			app.get("io").emit('novaPromocao', promocao);
 			res.redirect('/promocoes');
 		});
 	}

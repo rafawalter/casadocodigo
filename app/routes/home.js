@@ -1,5 +1,5 @@
 module.exports = function(app) {
-	var controller = app.controllers.produto;
+	var controller = app.controllers.home;
 
 	app.get('/', controller.lista);
 };

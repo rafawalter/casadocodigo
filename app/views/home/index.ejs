@@ -10,6 +10,9 @@
           rel="publisher"/>
     <title>Livros de Java, SOA, Android, iPhone, Ruby on Rails e
         muito mais - Casa do Código</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+
     <link href="/css/site/cssbase-min.css"
           rel="stylesheet" type="text/css" media="all"/>
     <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700'
@@ -41,6 +44,8 @@
 
     <link href="/css/site/book-collection.css"
           rel="stylesheet" type="text/css" media="all"/>
+
+
 </head>
 <body class="home">
 
@@ -166,6 +171,18 @@
 
 <!-- fim-->
 
+
+
+<!-- ***************************************************** -->
+<div  id='nova-promocao' class='panel panel-default'>
+    <div class='panel-heading'>
+        <h2 class='panel-title'>Novas promoções</h2>
+    </div>
+    <div class="panel-body">
+        <ul></ul>
+    </div>
+</div>
+
 <footer id="layout-footer">
     <div class="clearfix container">
 
@@ -248,5 +265,13 @@
         </div>
     </div>
 </footer>
+    <script src='/js/jquery.js'></script>
+    <script src='/socket.io/socket.io.js'></script>
+    <script>
+        var socket = io();
+        socket.on('novaPromocao', function(promocao) {
+            jQuery('<li>').append(promocao.descricao).appendTo('#nova-promocao .panel-body ul');
+        });
+    </script>
 </body>
 </html>
