@@ -5,6 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "co-express": "^1.2.1",
     "consign": "^0.1.2",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
@@ -21,7 +22,7 @@
   },
   "scripts": {
     "test": "mocha --recursive",
-    "nodemon": "nodemon",
+    "nodemon": "NODE_ENV=test nodemon",
     "hello": "echo \"Hello world\" && exit 1",
     "start": "NODE_ENV=production node ./server.js"
   },

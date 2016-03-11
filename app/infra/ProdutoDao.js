@@ -18,8 +18,16 @@ ProdutoDao.prototype.atualiza = function (produto, callback) {
 	});
 };
 
-ProdutoDao.prototype.salva = function(produto, callback) {
-	this._connection.query('INSERT INTO livros SET ?', produto, callback);
+ProdutoDao.prototype.salva = function(produto) {
+	that = this;
+	return new Promise(function(resolve,reject) {
+		that._connection.query('INSERT INTO livros SET ?', produto, function(err) {
+			if (err) {
+				reject('Não foi possível salvar o produto');
+			}
+			resolve();
+		});
+	});
 };
 
 module.exports = function() {

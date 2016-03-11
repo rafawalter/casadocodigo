@@ -1,4 +1,5 @@
 module.exports = function(app) {
+	var wrap = require('co-express');
 	var controller = {};
 
 	controller.lista = function(req,res) {
@@ -47,19 +48,23 @@ module.exports = function(app) {
 		};
 	};
 
-	controller.salva = function(req,res) {
+	controller.salva = wrap(function *(req,res) {
 		var produto = req.body;
 
 		if (validaFormulario(produto, req, res)) {
 			var connection = app.infra.connectionFactory();
 			var produtoDao = new app.infra.ProdutoDao(connection);
-			produtoDao.salva(produto, function() {
+
+			try {
+				yield produtoDao.salva(produto);
 				res.redirect('/produtos');
-			});
+			} catch(err) {
+				console.log(err);
+			}
 
 			connection.end();
 		};
-	};
+	});
 
 	controller.obterFormulario = function(req,res) {
 		res.render('produtos/form', {produto:{}});
