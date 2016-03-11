@@ -22,7 +22,8 @@
   "scripts": {
     "test": "mocha --recursive",
     "nodemon": "nodemon",
-    "hello": "echo \"Hello world\" && exit 1"
+    "hello": "echo \"Hello world\" && exit 1",
+    "start": "node ./server.js"
   },
   "repository": {
     "type": "git",
