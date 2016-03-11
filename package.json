@@ -15,11 +15,14 @@
     "socket.io": "^1.4.5"
   },
   "devDependencies": {
-    "nodemon": "^1.9.1"
+    "mocha": "^2.4.5",
+    "nodemon": "^1.9.1",
+    "supertest": "^1.2.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "nodemon": "nodemon"
+    "test": "mocha --recursive",
+    "nodemon": "nodemon",
+    "hello": "echo \"Hello world\" && exit 1"
   },
   "repository": {
     "type": "git",
