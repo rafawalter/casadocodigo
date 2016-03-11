@@ -28,5 +28,14 @@ module.exports = function() {
 		.then('routes')
 		.into(app);
 
+	app.use(function(req,res,next) {
+		console.log('xuxa');
+		next();
+	});
+
+	app.use(function(req,res,next) {
+		res.render('erros/404');
+	});
+
 	return app;
 };
