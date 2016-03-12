@@ -2,11 +2,14 @@ module.exports = function(app) {
 	var wrap = require('co-express');
 	var controller = {};
 
-	controller.lista = function(req,res) {
+	controller.lista = wrap(function *(req,res) {
 		var connection = app.infra.connectionFactory();
 		var produtoDao = new app.infra.ProdutoDao(connection);
 
-		produtoDao.lista( function(err, produtos) {
+		try {
+			var produtos = yield produtoDao.lista();
+			console.log('baixou');
+
 			res.format({
 				html: function() {
 					res.render('produtos/lista', {lista: produtos});
@@ -15,10 +18,12 @@ module.exports = function(app) {
 					res.json(produtos);
 				},
 			});
-		});
+		} catch(err) {
+			console.log(err);
+		}
 
 		connection.end();
-	};
+	});
 
 	controller.obterPorId = function(req,res) {
 		var id = req.params.id;
